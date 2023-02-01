@@ -1,9 +1,7 @@
 package com.example.demo.librarian;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,16 @@ public class LibrarianController {
     @GetMapping
     public List<Librarian> getLibrarians() {
         return LIBRARIAN_SERVICE.getLibrarians();
+    }
+
+    @PostMapping
+    public void addNewLibrarian(@RequestBody Librarian librarian) {
+        LIBRARIAN_SERVICE.addNewLibrarian(librarian);
+    }
+
+    @DeleteMapping(path = "{librarianId}")
+    public void deleteLibrarian(@PathVariable("librarianId") Integer librarianId) {
+        LIBRARIAN_SERVICE.deleteLibrarian(librarianId);
     }
 
 }
